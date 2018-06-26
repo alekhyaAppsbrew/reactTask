@@ -12,13 +12,11 @@ import { FormattedNumber } from 'react-intl';
 import Avatar from 'material-ui/Avatar';
 import FileFolder from 'material-ui/svg-icons/file/folder';
 import FontIcon from 'material-ui/FontIcon';
-//import List from 'material-ui/List/List';
-//import ListItem from 'material-ui/List/ListItem';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+// import List from 'material-ui/List/List';
+// import ListItem from 'material-ui/List/ListItem';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-
-
-import { makeSelectCurrentUser } from 'containers/App/selectors';
+import { makeSelectCurrentUser } from 'containers/Users/selectors';
 import ListItem from 'components/ListItem';
 import IssueIcon from './IssueIcon';
 import IssueLink from './IssueLink';
@@ -28,21 +26,18 @@ import Wrapper from './Wrapper';
 export class RepoListItem extends React.PureComponent {
   render() {
     const { item } = this.props;
-    let nameprefix = '';
-
+    const nameprefix = '';
 
     // Put together the content of the repository
     const content = (
       <Wrapper>
-        <RepoLink  target="_blank">
-          {nameprefix + item.login}
-        </RepoLink>
+        <RepoLink target="_blank">{nameprefix + item.login}</RepoLink>
       </Wrapper>
     );
 
     // Render the content into a list item
-    return(  <ListItem key={`repo-list-item-${item.full_name}`} item={content} />);
-	/**return 
+    return <ListItem key={`repo-list-item-${item.full_name}`} item={content} />;
+    /** return 
 	<ListItemAvatar
 	   key={`repo-list-item-${item.full_name}`}
       disabled={true}
@@ -52,10 +47,7 @@ export class RepoListItem extends React.PureComponent {
       }
     >
       Image Avatar
-    </ListItemAvatar>;**/
-	
-	
-	
+    </ListItemAvatar>;* */
   }
 }
 

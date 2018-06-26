@@ -18,7 +18,7 @@ import {
   makeSelectRepos,
   makeSelectLoading,
   makeSelectError,
-} from 'containers/App/selectors';
+} from './selectors';
 import H2 from 'components/H2';
 import ReposList from 'components/ReposList';
 import AtPrefix from './AtPrefix';
@@ -27,10 +27,10 @@ import Form from './Form';
 import Input from './Input';
 import Section from './Section';
 import messages from './messages';
-import { loadRepos } from '../App/actions';
+import { loadRepos } from './actions';
 import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';
-import reducer from './reducer';
+import { homeReducer } from './reducer';
 import saga from './saga';
 
 /* eslint-disable react/prefer-stateless-function */
@@ -39,14 +39,11 @@ export class HomePage extends React.PureComponent {
    * when initial state username is not null, submit the form to load repos
    */
   componentDidMount() {
-	  
-	  // Whenever there is a reload of the URL call the
-	  // onRequestForUsers method to obtain the 
-	  // list of github users
-      this.props.onRequestForUsers();
-	  
+    // Whenever there is a reload of the URL call the
+    // onRequestForUsers method to obtain the
+    // list of github users
+    this.props.onRequestForUsers();
   }
- 
 
   render() {
     const { loading, error, repos } = this.props;
@@ -66,7 +63,7 @@ export class HomePage extends React.PureComponent {
           />
         </Helmet>
         <div>
-          <Section>  
+          <Section>
             <ReposList {...reposListProps} />
           </Section>
         </div>
@@ -106,7 +103,7 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-const withReducer = injectReducer({ key: 'home', reducer });
+const withReducer = injectReducer({ key: 'home', reducer: homeReducer });
 const withSaga = injectSaga({ key: 'home', saga });
 
 export default compose(
